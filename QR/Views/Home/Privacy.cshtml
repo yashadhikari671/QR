@@ -1,0 +1,24 @@
+﻿@model TicketDetail
+@{
+    ViewData["Title"] = "Ticket Detail";
+}
+<h1>@ViewData["Title"]</h1>
+<div >
+    <div class="row border w-75 ">
+        <div class="col-6">
+            <label class="text-center"> ----Ticket---- </label>
+            <h6>Name : @Model.Name </h6>
+            <h6>Event : @Model.Event </h6>
+            <h6>Venue : @Model.Venue </h6>
+            <h6>Eventdate : @Model.EventDate </h6>
+            <h6>Eventdate : @Model.price </h6>
+        </div>
+        <div class="col-3">
+            <img src="@ViewBag.qrCodeImage" alt="qr" height="200" width="200" />
+        </div>
+
+    </div>
+
+   
+</div>
+<p>Use this page to detail your site's privacy policy.</p>

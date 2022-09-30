@@ -1,0 +1,24 @@
+﻿@model TicketDetail
+@{
+    ViewData["Title"] = "Home Page";
+    
+}
+
+    
+<
+    
+
+<div class="text-center">
+    <h1>Buy Ticket</h1>
+    <form asp-action="Privacy">
+        <input asp-for=" @Model.Id" placeholder="Id" class="border-dark" /><br />
+        <input asp-for=" @Model.Name" placeholder="name" class="border-dark" /><br />
+        <input asp-for=" @Model.Event" placeholder="Event" class="border-dark" /><br />
+        <input asp-for=" @Model.price" placeholder="Price" class="border-dark" /><br />
+        <input asp-for=" @Model.EventDate" placeholder="EventDate" class="border-dark" /><br />
+        <button>
+            Submit
+        </button>
+
+    </form>
+</div>
