@@ -10,7 +10,9 @@ using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace QR.Controllers
 {
@@ -34,6 +36,7 @@ namespace QR.Controllers
         public IActionResult Privacy(TicketDetail ticketDetail)
 
         {
+            var filepath = "C:\\Users\\yash.adhikari\\source\\repos\\QR\\QR\\wwwroot\\Qr\\";
             var jsonString = JsonConvert.SerializeObject(ticketDetail);
             using (MemoryStream ms = new MemoryStream())
             {
@@ -42,8 +45,21 @@ namespace QR.Controllers
                 QRCode qrCode = new QRCode(qrCodeData);
                 using (Bitmap bitmap = qrCode.GetGraphic(20))
                 {
-                    bitmap.Save(ms, ImageFormat.Png);
-                    ViewBag.qrCodeImage = "data:image/Png;base64," + Convert.ToBase64String(ms.ToArray());
+                    bitmap.Save( ms, ImageFormat.Jpeg);
+                    var qrCodeImage = "data:image/Png;base64," + Convert.ToBase64String(ms.ToArray());
+                    ViewBag.qrCodeImage = qrCodeImage;
+                    FileStream fs = new FileStream(string.Format(@"{0}{1}.Jpeg", filepath,DateTime.Now.Ticks), FileMode.Create, FileAccess.Write);
+                    if (fs.CanWrite)
+                    {
+                        byte[] Img = ms.ToArray();
+                        fs.Write(Img,0,Img.Length);
+                    }
+                    fs.Flush();
+                    fs.Close();
+
+                    ViewBag.path = string.Format(@"{0}{1}.Jpeg", filepath, DateTime.Now.Ticks);
+
+
                 }
             }
 
